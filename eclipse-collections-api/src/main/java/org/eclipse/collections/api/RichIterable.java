@@ -2453,4 +2453,9 @@ public interface RichIterable<T>
         this.forEach(each -> target.put(groupByFunction.apply(each), collectFunction.apply(each)));
         return target;
     }
+
+    default <V> boolean collectContains(Function<? super T, ? extends V> function, V value){
+            return this.anySatisfy( e -> value.equals(function.apply(e)));
+    }
+
 }

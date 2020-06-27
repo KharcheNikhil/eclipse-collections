@@ -2246,6 +2246,15 @@ public interface RichIterableTestCase extends IterableTestCase
         assertTrue(expectedEvenNumberList.containsAll(targetResult.get(Boolean.FALSE)));
     }
 
+    default void  RichIterable_collectContains(){
+        RichIterable<Integer> iterable = this.newWith(10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
+        boolean expectedTrue = iterable.collectContains(i -> i, 10);
+        assertEquals(true, expectedTrue);
+
+        boolean expectedFalse = iterable.collectContains(i -> i, -1);
+        assertEquals(false, expectedFalse);
+    }
+
     class Holder<T extends Comparable<? super T>> implements Comparable<Holder<T>>
     {
         private final T field;
